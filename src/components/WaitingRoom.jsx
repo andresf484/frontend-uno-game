@@ -11,8 +11,11 @@ export function WaitingRoom({ room, roomId }) {
     socket.emit('playerReady', roomId);
   };
 
+  const qty_players = import.meta.env.VITE_QTY_PLAYERS;
+
   const currentPlayer = room.players.find(p => p.id === socket.id);
-  const emptySlots = 4 - room.players.length;
+  //const emptySlots = 4 - room.players.length;
+  const emptySlots = qty_players - room.players.length;
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
@@ -38,7 +41,8 @@ export function WaitingRoom({ room, roomId }) {
         <div className="space-y-6">
           <div className="bg-gray-50 rounded-lg p-4">
             <h3 className="text-lg font-semibold mb-4">
-              Players ({room.players.length}/4)
+              {/* Players ({room.players.length}/4) */}
+              Players ({room.players.length}/{qty_players})
               {room.players.length >= 2 && (
                 <span className="text-sm font-normal text-gray-500 ml-2">
                   (Minimum 2 players needed)
