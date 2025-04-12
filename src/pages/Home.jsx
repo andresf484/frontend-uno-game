@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Play, Users } from 'lucide-react';
-import { socket } from '../services/socket.js';
+//import { socket } from '../services/socket.js';
+
+import { SocketContext } from '../context/SocketContext'
 
 export function Home() {
+
+  const { socket } = useContext(SocketContext);
+
   const navigate = useNavigate();
   const [playerName, setPlayerName] = useState('');
   const [roomId, setRoomId] = useState('');

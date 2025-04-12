@@ -1,15 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { socket } from '../services/socket';
+//import { socket } from '../services/socket';
 import { GameBoard } from '../components/GameBoard';
 import { WaitingRoom } from '../components/WaitingRoom';
 
-export function GameRoom() {
-  const { roomId } = useParams();
-  const [gameState, setGameState] = useState(null);
-  const [room, setRoom] = useState(null);
+import { SocketContext } from '../context/SocketContext';
 
-  useEffect(() => {
+export function GameRoom() {
+
+  const { 
+    //socket, 
+    gameState, 
+    //setGameState, 
+    room, 
+    //setRoom 
+  } = useContext(SocketContext);
+
+  const { roomId } = useParams();
+  //const [gameState, setGameState] = useState(null);
+  //const [room, setRoom] = useState(null);
+
+  /* useEffect(() => {
     socket.on('playerJoined', (updatedRoom) => {
       setRoom(updatedRoom);
     });
@@ -37,7 +48,7 @@ export function GameRoom() {
       socket.off('gameStarted');
       socket.off('gameStateUpdated');
     };
-  }, []);
+  }, []); */
 
   if (!room) {
     return (
